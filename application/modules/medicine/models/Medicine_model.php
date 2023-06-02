@@ -1,0 +1,287 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Medicine_model extends CI_model {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->database();
+    }
+
+    function insertMedicine($data) 
+    {
+        // echo "<pre>";
+        // print_r($data); exit;
+        // $data1 = array('hospital_id' => $this->session->userdata('hospital_id'));
+        // $data2 = array_merge($data, $data1);
+        $this->db->insert('medicine_another', $data);
+        // if(!$this->db->insert('medicine_another', $data))
+        // {
+        //     print_r($this->db->error()); exit;
+        // }
+        // else
+        // {
+        //     echo 'All set'; exit;
+        // }
+    }
+
+    function getMedicine() {
+        // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine_another');
+        return $query->result();
+    }
+
+    function getLatestMedicine() {
+        // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get('medicine');
+        return $query->result();
+    }
+
+    function getMedicineLimitByNumber($number) {
+        // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine', $number);
+        return $query->result();
+    }
+
+    function getMedicineByPageNumber($page_number) {
+        $data_range_1 = 50 * $page_number;
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine', 50, $data_range_1);
+        return $query->result();
+    }
+
+    function getMedicineByStockAlert() {
+        $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->where('quantity <=', 20);
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine');
+        return $query->result();
+    }
+
+    function getMedicineByStockAlertByPageNumber($page_number) {
+        $data_range_1 = 50 * $page_number;
+        $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->where('quantity <=', 20);
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine', 50, $data_range_1);
+        return $query->result();
+    }
+
+    function getMedicineById($id) {
+        // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->where('id', $id);
+        $query = $this->db->get('medicine_another');
+        return $query->row();
+    }
+
+    function getMedicineByKeyByStockAlert($page_number, $key) {
+        $data_range_1 = 50 * $page_number;
+        $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->where('quantity <=', 20);
+        $this->db->or_like('name', $key);
+        $this->db->or_like('company', $key);
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine', 50, $data_range_1);
+        return $query->result();
+    }
+
+    function getMedicineByKey($page_number, $key) {
+        $data_range_1 = 50 * $page_number;
+        $this->db->like('name', $key);
+        $this->db->or_like('company', $key);
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine', 50, $data_range_1);
+        return $query->result();
+    }
+
+    function getMedicineByKeyForPos($key) {
+        $this->db->like('name', $key);
+        $this->db->order_by('id', 'asc');
+        $query = $this->db->get('medicine');
+        return $query->result();
+    }
+
+    function updateMedicine($id, $data) {
+        $this->db->where('id', $id);
+        $this->db->update('medicine_another', $data);
+    }
+
+    function insertMedicineCategory($data) {
+        $data1 = array();//array('hospital_id' => $this->session->userdata('hospital_id'));
+        $data2 = array_merge($data, $data1);
+        $this->db->insert('mp_category', $data2);
+    }
+
+    function getMedicineCategory() {
+        // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        // $query = $this->db->get('medicine_category');
+        // $this->db->group_by('subcategory');
+        $query = $this->db->get('mp_category');
+        return $query->result();
+    }
+
+    function getMedicineCategoryById($id) {
+        // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->where('id', $id);
+        $query = $this->db->get('mp_category');
+        return $query->row();
+    }
+
+    function totalStockPrice() {
+        $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $query = $this->db->get('medicine')->result();
+        $stock_price = array();
+        foreach ($query as $medicine) {
+            $stock_price[] = $medicine->price * $medicine->quantity;
+        }
+
+        if (!empty($stock_price)) {
+            return array_sum($stock_price);
+        } else {
+            return 0;
+        }
+    }
+
+    function updateMedicineCategory($id, $data) {
+        $this->db->where('id', $id);
+        $this->db->update('mp_category', $data);
+    }
+
+    function deleteMedicine($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('medicine_another');
+    }
+
+    function deleteMedicineCategory($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('mp_category');
+    }
+
+    function getMedicineBySearch($search) {
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->select('*')
+                ->from('medicine')
+                // ->where('hospital_id', $this->session->userdata('hospital_id'))
+                ->where("(id LIKE '%" . $search . "%' OR category LIKE '%" . $search . "%' OR name LIKE '%" . $search . "%' OR e_date LIKE '%" . $search . "%'OR generic LIKE '%" . $search . "%'OR company LIKE '%" . $search . "%'OR effects LIKE '%" . $search . "%')", NULL, FALSE)
+                ->get();
+        return $query->result();
+    }
+
+    function getMedicineByLimit($limit, $start) {
+        // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+        $this->db->order_by('id', 'desc');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get('medicine_another');
+        return $query->result();
+    }
+
+    function getMedicineByLimitBySearch($limit, $start, $search) {
+        $this->db->order_by('id', 'desc');
+        $this->db->limit($limit, $start);
+        $query = $this->db->select('*')
+                ->from('medicine')
+                // ->where('hospital_id', $this->session->userdata('hospital_id'))
+                ->where("(id LIKE '%" . $search . "%' OR category LIKE '%" . $search . "%' OR name LIKE '%" . $search . "%' OR e_date LIKE '%" . $search . "%'OR generic LIKE '%" . $search . "%'OR company LIKE '%" . $search . "%'OR effects LIKE '%" . $search . "%')", NULL, FALSE)
+                ->get();
+        return $query->result();
+    }
+
+    function getMedicineNameByAvailablity($searchTerm) {
+        if (!empty($searchTerm)) {
+            $this->db->select('*');
+            // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+            $this->db->where("name like '%" . $searchTerm . "%' ");
+            $fetched_records = $this->db->get('medicine');
+            $query = $fetched_records->result();
+        } else {
+            $this->db->select('*');
+            $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+            $this->db->limit(10);
+            $fetched_records = $this->db->get('medicine');
+            $query = $fetched_records->result();
+        }
+
+        return $query;
+    }
+
+    function getMedicineInfo($searchTerm) {
+        if (!empty($searchTerm)) {
+            $this->db->select('*');
+            // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+            $this->db->where("id LIKE '%" . $searchTerm . "%' OR name LIKE '%" . $searchTerm . "%'");
+            $fetched_records = $this->db->get('medicine');
+            $users = $fetched_records->result_array();
+        } else {
+            $this->db->select('*');
+            // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+            $this->db->limit(10);
+            $fetched_records = $this->db->get('medicine');
+            $users = $fetched_records->result_array();
+        }
+        // Initialize Array with fetched data
+        $data = array();
+        foreach ($users as $user) {
+            $data[] = array("id" => $user['id'] . '*' . $user['name'], "text" => $user['name']);
+        }
+        return $data;
+    }
+
+    function getMedicineInfoForPharmacySale($searchTerm) {
+        if (!empty($searchTerm)) {
+            $this->db->select('*');
+            // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+            $this->db->where('quantity >', '0');
+            $this->db->where("id LIKE '%" . $searchTerm . "%' OR name LIKE '%" . $searchTerm . "%'");
+            $fetched_records = $this->db->get('medicine');
+            $users = $fetched_records->result_array();
+        } else {
+            $this->db->select('*');
+            // $this->db->where('hospital_id', $this->session->userdata('hospital_id'));
+            $this->db->where('quantity >', '0');
+            $this->db->limit(10);
+            $fetched_records = $this->db->get('medicine');
+            $users = $fetched_records->result_array();
+        }
+        // Initialize Array with fetched data
+        $data = array();
+        foreach ($users as $user) {
+            $data[] = array("id" => $user['id'] . '*' . (float) $user['s_price'] . '*' . $user['name'] . '*' . $user['company'] . '*' . $user['quantity'], "text" => $user['name']);
+        }
+        return $data;
+    }
+
+    function getCategoriesP()
+    {
+        // $this->db->group_by('category');
+        $this->db->where('parent_id',0);
+        return $this->db->get('mp_category')->result();
+    }
+
+    function getparentcategories($id)
+    {
+        $this->db->where('id',$id);
+        return $this->db->get('mp_category')->row_array();
+    }
+
+    function getCategoryResults($category_id)
+    {
+        $this->db->where('id',$category_id);
+        $data = $this->db->get('mp_category')->row_array();
+
+        $this->db->where('id',$data['parent_id']);
+        $data1 = $this->db->get('mp_category')->row_array();
+        $ret_arr = array('p_category'=>$data1['category_name'], 'subcategory'=>$data['category_name']);
+        return $ret_arr;
+        // echo "<pre>";
+        // print_r($ret_arr);
+        // echo "Secon<br>";        
+        // print_r($data1);  
+        // exit;      
+    }
+
+}

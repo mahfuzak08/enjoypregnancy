@@ -1,0 +1,5 @@
+{
+    "require": {
+        "shurjomukhi/shurjopay-plugin-php": "^0.1.1"
+    }
+}

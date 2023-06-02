@@ -1,0 +1,177 @@
+
+#myc-container {
+    width: inherit;
+}
+
+#myc-nav-container {
+    /*margin-bottom: 15px;*/
+    width: inherit;
+}
+
+#myc-current-month-year-container {
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: lighter;
+    text-align: center;
+    text-transform: capitalize;
+    vertical-align: top;
+    width: 68%;
+}
+
+#myc-prev-week-container {
+    /*display: inline-block;*/
+    /*width: 15%;*/
+}
+
+#myc-next-week-container {
+    /*display: inline-block;*/
+    /*width: 15%;*/
+}
+
+#myc-prev-week {
+    /*border: 1px solid #e0e0e0;*/
+    /*border-radius: 80px;*/
+    color: green;
+    cursor: pointer;
+    float: left;
+    font-size: 23px;
+    /*font-weight: lighter;*/
+    /*height: 40px;*/
+    text-align: center;
+    /*width: 40px;*/
+    position: relative;
+    top: 40px;
+    left: -6px;
+}
+
+#myc-next-week {
+    /*border: 1px solid #e0e0e0;*/
+    /*border-radius: 80px;*/
+    color: green;
+    cursor: pointer;
+    float: right;
+    font-size: 23px;
+    /*font-weight: lighter;*/
+    /*height: 40px;*/
+    text-align: center;
+    /*width: 40px;*/
+    position: relative;
+    top: 40px;
+    right: -6px;
+}
+
+#myc-prev-week:hover, #myc-next-week:hover {
+    /*border: 1px solid #bdbdbd;*/
+    /*color: #bdbdbd;*/
+}
+
+#myc-week-container {
+    /*border: 1px solid #e0e0e0;*/
+}
+
+#myc-dates-container {
+    /*background-color: #fafafa;*/
+    text-align: center;
+}
+
+.myc-date-header {
+    border-right: 1px solid #e0e0e0;
+    display: inline-block;
+    min-height: 50px;
+    /*padding: 15px 0px 15px 15px;*/
+    vertical-align: top;
+    width: 13.77%;
+}
+
+.myc-date-header:first-of-type {
+    /*padding-left: 15px;*/
+}
+
+.myc-date-header:last-of-type {
+    border-right: none;
+    width: 13%;
+}
+
+#myc-available-time-container {
+    /*border-top: 1px solid #e0e0e0;*/
+    height: 170px;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.myc-day-time-container {
+    /*border-right: 1px solid #e0e0e0;*/
+    display: inline-block;
+    height: 100%;
+    padding: 5px 0px 0px 0px;
+    vertical-align: top;
+    width: 13.77%;
+}
+
+.myc-day-time-container:first-of-type {
+    /*padding-left: 15px;*/
+}
+
+.myc-day-time-container:last-of-type {
+    border-right: none;
+    width: 13%;
+}
+
+.myc-date-number {
+    font-size: 1.8em;
+    font-weight: lighter;
+}
+
+.myc-available-time {
+    color: #2CBFD9;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid gray;
+    border: 1px solid #ddd;
+    background-color: #fdfdfd;
+}
+
+.myc-available-time.selected, .myc-available-time:hover {
+    color: #fff;
+    border: 1px solid #58c9f3;
+    background-color: #58c9f3;
+}
+
+.myc-date-display {
+    font-weight: lighter;
+}
+
+@media only screen and (max-width: 768px) {
+    .myc-date-header, .myc-day-time-container {
+        width: 13.5%;
+    }
+    /*.myc-date-header:last-of-type, .myc-day-time-container:last-of-type {
+        width: 12%;
+    }*/
+}
+#myc-date-header-0:first-of-type
+{
+    /*color:green;*/
+    /*font-weight: 600;*/
+}
+
+#myc-available-time-container {
+  scrollbar-width: thin;
+  scrollbar-color: #d8d8d8 #f1f1f1;
+}
+
+/* Works on Chrome/Edge/Safari */
+#myc-available-time-container::-webkit-scrollbar {
+  width: 8px;
+}
+#myc-available-time-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+#myc-available-time-container::-webkit-scrollbar-thumb {
+  background-color: #d8d8d8;
+  border-radius: 20px;
+  border: 3px solid #f1f1f1;
+}

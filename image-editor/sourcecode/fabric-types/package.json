@@ -1,0 +1,98 @@
+{
+  "_from": "@types/fabric@3.6.9",
+  "_id": "@types/fabric@3.6.9",
+  "_inBundle": false,
+  "_integrity": "sha512-eCClezkOgC1VG8CijnQXVUXIDtxR/gMomXNtu/H2/MucFTbokIzH9yGoJTiHwStWgR1QGif21ta+tc/7y8zegQ==",
+  "_location": "/@types/fabric",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@types/fabric@3.6.9",
+    "name": "@types/fabric",
+    "escapedName": "@types%2ffabric",
+    "scope": "@types",
+    "rawSpec": "3.6.9",
+    "saveSpec": null,
+    "fetchSpec": "3.6.9"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/fabric/-/fabric-3.6.9.tgz",
+  "_shasum": "4561a64b3f19c8ff7895621e98e96c18f410b984",
+  "_spec": "@types/fabric@3.6.9",
+  "_where": "/mnt/e/apps/pixie",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Oliver Klemencic",
+      "url": "https://github.com/oklemencic"
+    },
+    {
+      "name": "Joseph Livecchi",
+      "url": "https://github.com/joewashear007"
+    },
+    {
+      "name": "Michael Randolph",
+      "url": "https://github.com/mrand01"
+    },
+    {
+      "name": "Tiger Oakes",
+      "url": "https://github.com/NotWoods"
+    },
+    {
+      "name": "Brian Martinson",
+      "url": "https://github.com/bmartinson"
+    },
+    {
+      "name": "Rogerio Teixeira",
+      "url": "https://github.com/RogerioTeixeira"
+    },
+    {
+      "name": "Bradley Hill",
+      "url": "https://github.com/BradleyHill"
+    },
+    {
+      "name": "Bryan Krol",
+      "url": "https://github.com/bmkrol823"
+    },
+    {
+      "name": "Glenn Gartner",
+      "url": "https://github.com/glenngartner"
+    },
+    {
+      "name": "Codertx",
+      "url": "https://github.com/codertx"
+    },
+    {
+      "name": "Mike Moore",
+      "url": "https://github.com/mike667"
+    },
+    {
+      "name": "Natalie Marleny",
+      "url": "https://github.com/nataliemarleny"
+    }
+  ],
+  "dependencies": {},
+  "deprecated": false,
+  "description": "TypeScript definitions for FabricJS",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/fabric",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+    "directory": "types/fabric"
+  },
+  "scripts": {},
+  "typeScriptVersion": "3.2",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "a77dcc140094fbc2c2dd994e62e329f91a563a0149188c9efd7b736f490036af",
+  "version": "3.6.9"
+}

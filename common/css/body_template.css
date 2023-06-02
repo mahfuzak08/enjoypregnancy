@@ -1,0 +1,118 @@
+.templatearea {
+    background: url("../img/pngbg.png") repeat;
+    padding: 8px;
+    'position: absolute;
+    width: 100%;
+    height: 100vh;
+}
+
+#bodychartModal .modal-dialog{
+   margin: 0 auto;
+}
+
+.saveBtn {
+    position: absolute;
+    right: 50px;
+    bottom: 150px;
+}
+
+.toolbar {
+    background: #dedede;
+
+}
+
+.toolbar li {
+    margin-bottom: 6px;
+    color: #FFF;
+}
+
+.toolbar ul {
+    padding-bottom: 6px;
+    text-align: center;
+    padding: 10px 5px;
+    width: auto;
+}
+
+
+.toolbar ul:first-child {
+    background: #007FA3;
+}
+
+
+
+.btn-transparent {
+    background: transparent;
+}
+
+.pen {
+    cursor: url("../img/Pen-3-icon.png") 17  16, auto;
+}
+
+.eraser {
+    cursor: url("../img/Eraser-2-icon.png") 38  38, auto;
+}
+
+.hand {
+    cursor: url("../img/Hands-Hand-iconx.png"), auto;
+}
+
+.site-min-height {
+    min-height: auto;
+!important;
+}
+
+body {
+    background-image: none;
+!important;
+}
+
+.thumbnails img {
+    height: 100px;
+    align-items: center
+}
+
+.thumbnails {
+    padding-top: 10px;
+}
+
+#designboard {
+    margin: auto;
+    text-align: center;
+    display: inline-table
+}
+
+
+.editarea {
+    position: relative;
+    width: 90%;
+}
+
+canvas {
+      position: absolute;
+    margin: auto;
+
+}
+
+#editcanvas {
+    margin: auto;
+    'position: relative;
+    z-index: 5;
+    background: #FFF;
+    'background: transparent;
+}
+
+#imgcanvas {
+    background: #1a7bb9;
+}
+
+
+#board {
+    border: 1px solid #deddee;
+    position: absolute;
+    margin: auto;
+    '  background: #0f9d58;
+}
+
+#textareaTest{ width: 200px; !important;
+position: relative;
+    z-index: 999;}

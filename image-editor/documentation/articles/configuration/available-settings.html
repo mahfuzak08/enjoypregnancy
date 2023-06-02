@@ -1,0 +1,821 @@
+<html lang="en">
+<head>
+    <title>Available Settings</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="../../assets/styles/docs-global.css">
+    <link rel="stylesheet" href="../../assets/styles/docs-sidenav.css">
+    <link rel="stylesheet" href="../../assets/styles/docs-content.css">
+    <link rel="stylesheet" href="../../assets/styles/docs-article.css">
+    <link rel="stylesheet" href="../../assets/styles/article-content.css">
+    <script src="../../assets/docs-scripts.js"></script>
+</head>
+<body>
+<nav class="hc-content-navbar">
+    <div class="nav-title">Documentation</div>
+    <a class="submit-ticket" href="https://support.vebto.com/help-center/tickets/new">Create a ticket</a>
+</nav>
+
+<div class="hc-content">
+    <div class="hc-sidenav left">
+            <h3 class="highlight-item introduction">Introduction</h3>
+        <ul>
+                            <li>
+                    <a href="../introduction/translations.html" class="highlight-item translations">Translations</a>
+                </li>
+                            <li>
+                    <a href="../introduction/interface.html" class="highlight-item interface">Interface</a>
+                </li>
+                            <li>
+                    <a href="../introduction/getting-started.html" class="highlight-item getting-started">Getting Started</a>
+                </li>
+                    </ul>
+            <h3 class="highlight-item configuration">Configuration</h3>
+        <ul>
+                            <li>
+                    <a href="../configuration/theming.html" class="highlight-item theming">Theming</a>
+                </li>
+                            <li>
+                    <a href="../configuration/filter-texture-size.html" class="highlight-item filter-texture-size">Filter Texture Size</a>
+                </li>
+                            <li>
+                    <a href="../configuration/cross-origin-images.html" class="highlight-item cross-origin-images">Cross Origin Images</a>
+                </li>
+                            <li>
+                    <a href="../configuration/specifying-base-url.html" class="highlight-item specifying-base-url">Specifying Base Url</a>
+                </li>
+                            <li>
+                    <a href="../configuration/default-settings.html" class="highlight-item default-settings">Default Settings</a>
+                </li>
+                            <li>
+                    <a href="../configuration/available-settings.html" class="highlight-item available-settings">Available Settings</a>
+                </li>
+                    </ul>
+            <h3 class="highlight-item examples">Examples</h3>
+        <ul>
+                            <li>
+                    <a href="../examples/resetting-editor.html" class="highlight-item resetting-editor">Resetting Editor</a>
+                </li>
+                            <li>
+                    <a href="../examples/watermarking-photos.html" class="highlight-item watermarking-photos">Watermarking Photos</a>
+                </li>
+                            <li>
+                    <a href="../examples/editor-as-overlay.html" class="highlight-item editor-as-overlay">Editor as Overlay</a>
+                </li>
+                            <li>
+                    <a href="../examples/opening-photos.html" class="highlight-item opening-photos">Opening Photos</a>
+                </li>
+                            <li>
+                    <a href="../examples/saving-to-server.html" class="highlight-item saving-to-server">Saving to Server</a>
+                </li>
+                            <li>
+                    <a href="../examples/loading-state.html" class="highlight-item loading-state">Loading State</a>
+                </li>
+                            <li>
+                    <a href="../examples/saving-state.html" class="highlight-item saving-state">Saving State</a>
+                </li>
+                    </ul>
+            <h3 class="highlight-item api-usage">API Usage</h3>
+        <ul>
+                            <li>
+                    <a href="../api-usage/general-api.html" class="highlight-item general-api">General API</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/import.html" class="highlight-item import">Import</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/using-tools.html" class="highlight-item using-tools">Using Tools</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/export.html" class="highlight-item export">Export</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/frame.html" class="highlight-item frame">Frame</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/stickers.html" class="highlight-item stickers">Stickers</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/shapes.html" class="highlight-item shapes">Shapes</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/text.html" class="highlight-item text">Text</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/draw.html" class="highlight-item draw">Draw</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/transform.html" class="highlight-item transform">Transform</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/crop.html" class="highlight-item crop">Crop</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/resize.html" class="highlight-item resize">Resize</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/filter.html" class="highlight-item filter">Filter</a>
+                </li>
+                            <li>
+                    <a href="../api-usage/history.html" class="highlight-item history">History</a>
+                </li>
+                    </ul>
+            <h3 class="highlight-item objects">Objects</h3>
+        <ul>
+                            <li>
+                    <a href="../objects/events.html" class="highlight-item events">Events</a>
+                </li>
+                            <li>
+                    <a href="../objects/active-object.html" class="highlight-item active-object">Active Object</a>
+                </li>
+                            <li>
+                    <a href="../objects/object-list.html" class="highlight-item object-list">Object List</a>
+                </li>
+                    </ul>
+    </div>    <div class="center">
+        <section class="article-container">
+            <h1 class="article-title">Available Settings</h1>
+            <div class="article-body">
+                <h3 id="main-pixie-configuration">Main Pixie Configuration</h3>
+<pre class="language-typescript"><code>{
+    /**
+     * Image or pixie state that should be loaded into editor with initial load. Will accept url or image/state data.
+    */
+    image?: string|HTMLImageElement;
+
+    /**
+     * Whether images loaded into pixie will be hosted on another domain from where pixie is hosted.
+     */
+    crossOrigin?: boolean;
+
+    /**
+     * Opens new empty canvas at specified size. Alternative to image or pixie state.
+     */
+    blankCanvasSize?: {width: number; height: number};
+
+    /**
+     * Adds specified text as watermark on downloaded or exported image.
+     */
+    watermarkText?: string;
+
+    /**
+     * Maximum memory pixie will use when applying filters.
+     * https://support.vebto.com/help-center/articles/10/45/164/filter-texture-size
+     */
+    textureSize?: number;
+
+    /**
+     * From where should pixie assets be loaded.
+     * https://support.vebto.com/help-center/articles/10/45/150/specifying-base-url
+     */
+    baseUrl?: string;
+
+    ui?: {
+        /**
+         * Whether pixie should be visible initially.
+         */
+        visible: boolean;
+
+        /**
+         * Pixie theme that should be used by default.
+         */
+        defaultTheme: string,
+
+        /**
+         * Whether inline or overlay mode should be used.
+         */
+        mode: EditorMode,
+
+        /**
+         * Whether user should be able to close editor while in overlay mode.
+         */
+        allowEditorClose?: boolean,
+
+        /**
+         * Width of pixie editor in pixels or percentages.
+         */
+        width?: string,
+
+        /**
+         * Height of pixie editor in pixels or percentages.
+         */
+        height?: string,
+
+        /**
+         * Whether compact mode should be used initially.
+         * Compact mode will activate automatically if there is not enough screen space.
+         */
+        compact?: boolean,
+
+        /**
+         * When enabled, keyboard on mobile devices will not push pixie up on the screen.
+         */
+        ignoreMobileKeyboard?: boolean;
+
+        /**
+         * When user clicks on "save" button, show panel where image format, name and quality can be selected before download.
+         */
+        showExportPanel?: boolean,
+
+        /**
+         * Preset colors that will be shown in pixie color widgets.
+         */
+        colorPresets?: {
+            /**
+             * Lists of colors in hex or rgba format.
+             */
+            items: string[],
+
+            /**
+             * Whether default pixie colors should be overwritten with specified ones.
+             */
+            replaceDefault: boolean,
+        },
+
+        /**
+         * Navigation bar configuration.
+         */
+        nav: {
+            /**
+             * At which predefined position should navigation bar be displayed.
+             */
+            position: NavPosition,
+
+            /**
+             * Whether specified navigation items should replace default ones.
+             */
+            replaceDefault?: boolean,
+
+            /**
+             * What Items should be shown in the navigation bar.
+             */
+            items: NavItem[],
+        },
+
+        /**
+         * If not image or state is loaded into pixie, this panel can be opened to allow
+         * user to select from sample images, upload new image, or enter blank canvas size.
+         */
+        openImageDialog?: {
+            /**
+             * Whether this panel should be shown.
+             */
+            show: boolean,
+
+            /**
+             * Sample images that user should be able to pick from.
+             */
+            sampleImages?: SampleImage[],
+        },
+
+        /**
+         * Toolbar appearance and items configuration.
+         */
+        toolbar?: {
+            /**
+             * Whether toolbar should be visible.
+             */
+            hide?: boolean,
+
+            /**
+             * What items should appear on the left side of toolbar.
+             */
+            leftItems?: ToolbarItem[];
+
+            /**
+             * Which items should appear in toolbar center.
+             */
+            centerItems?: ToolbarItem[];
+
+            /**
+             * Which items should appear on the right side of toolbar.
+             */
+            rightItems?: ToolbarItem[];
+        },
+    };
+
+    /**
+     * Localization configuration.
+     */
+    languages?: {
+        /**
+         * Currently active language for the editor.
+         */
+        active: string,
+
+        /**
+         * List of custom language objects.
+         */
+        custom?: {[key: string]: {[key: string]: string}[]},
+    };
+
+    /**
+     * On "save" button click pixie will automatically send image data to specified url.
+     */
+    saveUrl?: string;
+
+    /**
+     * Called when image is saved via save button, export panel or pixie API.
+     */
+    onSave?: Function;
+
+    /**
+     * Called when pixie editor is fully loaded.
+     */
+    onLoad?: Function;
+
+    /**
+     * Called when editor is closed (via pixie API or close button click)
+     */
+    onClose?: Function;
+
+    /**
+     * Called when editor is opened (via pixie API or custom open button)
+     */
+    onOpen?: Function;
+
+    /**
+     * Called whenever a new file (image or state) is opened via file picker.
+     */
+    onFileOpen?: Function;
+
+    /**
+     * Called when main image is loaded (or changed) in the editor.
+     */
+    onMainImageLoaded?: Function;
+
+    /**
+     * Google Fonts API key for font selector.
+     */
+    googleFontsApiKey?: string;
+
+    tools?: {
+        /**
+         * Filter tool configuration.
+         */
+        filter?: {
+            /**
+             * Whether specified filters should replace default ones.
+             */
+            replaceDefault?: boolean,
+
+            /**
+             * Filters that should be shown in filter panel.
+             */
+            items: string[],
+        },
+
+        /**
+         * Resize tool configuration.
+         */
+        resize?: {
+            /**
+             * Minimum width user should be able to resize image to.
+             */
+            minWidth?: number;
+
+            /**
+             * Maximum width user should be able to resize image to.
+             */
+            maxWidth?: number;
+
+            /**
+             * Minimum height user should be able to resize image to.
+             */
+            minHeight?: number;
+
+            /**
+             * Maximum height user should be able to resize image to.
+             */
+            maxHeight?: number;
+        }
+
+        crop?: {
+            /**
+             * Initial aspect ratio for cropzone.
+             */
+            defaultRatio?: string,
+
+            /**
+             * Whether user should be able to manually enter cropzone width and height.
+             */
+            hideCustomControls?: boolean,
+
+            /**
+             * Whether built-in cropzone aspect ratios should be overwritten with specified ones.
+             */
+            replaceDefaultPresets?: boolean,
+
+            /**
+             * Custom cropzone aspect ratios.
+             */
+            presets: {ratio: string, name: string}[],
+
+            /**
+             * Cropzone appearance and functionality configuration.
+             */
+            cropZone?: {
+                /**
+                 * Whether cropzone should be selectable by clicking on it.
+                 */
+                selectable: boolean,
+
+                /**
+                 * Whether cropzone can be moved horizontally.
+                 */
+                lockMovementX: boolean,
+
+                /**
+                 * Whether cropzone can be moved vertically.
+                 */
+                lockMovementY: boolean,
+
+                /**
+                 * Whether cropzone's width can changed by dragging its left or right side.
+                 */
+                lockScalingX: boolean,
+
+                /**
+                 * Whether cropzone's height can changed by dragging its top or bottom.
+                 */
+                lockScalingY: boolean,
+
+                /**
+                 * Whether cropzone's size can be changed by dragging its corners.
+                 */
+                lockUniScaling: boolean,
+
+                /**
+                 * Whether corner handles for changing cropzone size are visible.
+                 */
+                hasControls: boolean,
+
+                /**
+                 * Whether cropzone borders are visible.
+                 */
+                hasBorders: boolean,
+            },
+        },
+
+        /**
+         * Draw tool configuration.
+         */
+        draw: {
+            /**
+             * Whether default brush sizes should be replaced.
+             */
+            replaceDefaultBrushSizes?: boolean,
+
+            /**
+             * Whether default brush types should be replaced.
+             */
+            replaceDefaultBrushTypes?: boolean,
+
+            /**
+             * Brush sizes that user should be able to pick from.
+             */
+            brushSizes: number[],
+
+            /**
+             * Brush types that user should be able to pick from.
+             */
+            brushTypes: string[],
+        }
+        text?: {
+            /**
+             * Whether default fonts should be replaced with specified custom ones.
+             */
+            replaceDefaultItems?: boolean,
+
+            /**
+             * Text that should be added by default when clicking on "add text" button.
+             */
+            defaultText?: string,
+
+            /**
+             * Initially selected category in font picker.
+             */
+            defaultCategory?: string,
+
+            /**
+             * Custom fonts that should be shown in font picker.
+             */
+            items?: FontItem[],
+        }
+
+        frame?: {
+            /**
+             * Whether default frames should be replaced with specified custom ones.
+             */
+            replaceDefault?: boolean,
+
+            /**
+             * Custom frames that user should be able to add to the image.
+             */
+            items?: Frame[],
+        },
+
+        shapes?: {
+            /**
+             * Whether default shapes should be replaced with specified custom ones.
+             */
+            replaceDefault?: boolean,
+
+            /**
+             * Custom shapes that user should be able to add to the image.
+             */
+            items?: BasicShape[],
+        },
+
+        stickers?: {
+            /**
+             * Whether default sticker categories should be replaced with specified custom ones.
+             */
+            replaceDefault?: boolean,
+
+            /**
+             * Custom sticker categories and their stickers that should appear in stickers panel.
+             */
+            items?: StickerCategory[],
+        },
+
+        import?: {
+            /**
+             * File extensions user should be able to select when opening new image.
+             */
+            validExtensions?: string[],
+
+            /**
+             * Maximum file size when opening new image or state file.
+             */
+            maxFileSize?: number; // in bytes
+
+            /**
+             * Whether new image overlays should be automatically resized to fit available canvas space.
+             */
+            fitOverlayToScreen?: boolean;
+
+            /**
+             * When user drags image from desktop onto pixie, should that image be opened as background or overlay.
+             */
+            openDroppedImageAsBackground?: boolean;
+        },
+
+        export?: {
+            /**
+             * Which format should images be downloaded in by default.
+             */
+            defaultFormat: 'png'|'jpeg'|'json',
+
+            /**
+             * What compression level should be applied to downloaded images. 0 to 1.
+             */
+            defaultQuality: number,
+
+            /**
+             * Default file name for downloaded images.
+             */
+            defaultName: string,
+        },
+
+        zoom?: {
+            /**
+             * Whether user should be able to manually zoom in and out via toolbar buttons.
+             */
+            allowUserZoom?: boolean;
+
+            /**
+             * Whether new image should be automatically zoomed so it fits into available screen space.
+             */
+            fitImageToScreen?: boolean;
+
+            /**
+             * Whether user should be able to zoom out below original image size.
+             */
+            disableMinimumZoom?: boolean;
+        }
+    };
+
+    /**
+     * Default styles and behaviour for various objects in pixie.
+     */
+    objectDefaults?: {
+        /**
+         * Styles and behaviour for all objects.
+         */
+        global?: ObjectDefaults;
+
+        /**
+         * Styles and behaviour for new basic shapes (circle, triangle etc.)
+         */
+        basicShape?: ObjectDefaults;
+
+        /**
+         * Styles and behaviour for new stickers.
+         */
+        sticker?: ObjectDefaults;
+
+        /**
+         * Styles and behaviour for text added to image via pixie.
+         */
+        text?: ObjectDefaults;
+    };
+}
+</code></pre>
+<h3 id="navigation-item-configuration-for-uinavitems-option-above">Navigation Item Configuration (For ui.nav.items option above)</h3>
+<pre class="language-typescript"><code>NavItem {
+    /**
+     * unique identifier for this navigation item.
+     */
+    name?: string;
+
+    /**
+     * Human readable name for this navigation item.
+     */
+    display_name?: string;
+
+    /**
+     * Action to perform when this nav item is clicked. Either name of panel to open or custom function.
+     */
+    action?: Function|DrawerName;
+
+    /**
+     * Name or url of icon for this navigation item.
+     */
+    icon?: string;
+
+    /**
+     * Whether this item is navigation button or separator.
+     */
+    type?: 'button'|'separator';
+}
+</code></pre>
+<h3 id="toolbar-item-configuration-for-uitoolbarleftitems-option-above">Toolbar Item Configuration (For ui.toolbar.leftItems option above)</h3>
+<pre class="language-typescript"><code>ToolbarItem {
+    /**
+     * Whether this item should be shown when editor is in compact mode.
+     * https://support.vebto.com/help-center/articles/10/13/51/interface#compact-mode
+     */
+    showInCompactMode?: boolean;
+
+    /**
+     * Whether this item should only be shown when editor is in compact mode.
+     * https://support.vebto.com/help-center/articles/10/13/51/interface#compact-mode
+     */
+    compactModeOnly?: boolean;
+
+    /**
+     * Type for this toolbar item.
+     */
+    type: 'button'|'zoomWidget'|'undoWidget'|'panelNameWidget'|'image';
+
+    /**
+     * Url for image when toolbar item type is set to "image".
+     */
+    src?: string;
+
+    /**
+     * Icon that should be shown for this item.
+     */
+    icon?: string;
+
+    /**
+     * Text that should be shown for this item.
+     */
+    text?: string;
+
+    /**
+     * Action that should be performed when user clicks on this item.
+     */
+    action?: ToolbarItemAction;
+
+    /**
+     * List of dropdown menu items that will be shown when this button is clicked.
+     */
+    dropdownItems?: {label: string, action: ToolbarItemAction}[];
+
+    /**
+     * Left margin for this toolbar in pixels.
+     */
+    marginLeft?: string;
+
+    /**
+     * Right margin for this toolbar in pixels.
+     */
+    marginRight?: string;
+
+    /**
+     * Condition that must be true for this item to show. Accepts config key and value.
+     * For example: {'tools.zoom.allowUserZoom': true}
+     */
+    condition?: {[key: string]: string|boolean};
+}</code></pre>
+<h3 id="object-defaults-configuration-for-objectdefaultsglobal-and-other-options-above">Object Defaults Configuration (For objectDefaults.global and other options above)</h3>
+<pre class="language-typescript"><code>ObjectDefaults {
+    /**
+     * Whether object resize handles should be solid or not.
+     */
+    transparentCorners?: boolean;
+
+    /**
+     * Whether object can be resized via corner handle (will change object aspect ratio).
+     */
+    lockUniScaling?: boolean;
+
+    /**
+     * Whether resize handles should be hidden when object is being dragged. 0 to 1.
+     */
+    borderOpacityWhenMoving?: number;
+
+    /**
+     * Whether resize handles should be round or square.
+     */
+    cornerStyle?: 'circle'|'rect';
+
+    /**
+     * Color for resize handles.
+     */
+    cornerColor?: string;
+
+    /**
+     * Color for border of resize handles.
+     */
+    cornerStrokeColor?: string;
+
+    /**
+     * Size for border of resize handles.
+     */
+    cornerSize?: number;
+
+    /**
+     * Object border color.
+     */
+    stroke?: string;
+
+    /**
+     * Object border width.
+     */
+    strokeWidth?: number;
+
+    /**
+     * Default object background color.
+     */
+    fill?: string;
+
+    /**
+     * Default align for text added via pixie.
+     */
+    textAlign?: 'initial'|'left'|'center'|'right'|'justify'|'justify-left'|'justify-center'|'justify-right';
+
+    /**
+     * Whether text should have an underline.
+     */
+    underline?: false;
+
+    /**
+     * Whether text should have a strikethrough line.
+     */
+    linethrough?: false;
+
+    /**
+     * Default font style for text added via pixie.
+     */
+    fontStyle?: 'normal'|'italic'|'oblique';
+
+    /**
+     * Default font family for text added via pixie.
+     */
+    fontFamily?: 'Times New Roman';
+
+    /**
+     * Default font weight text added via pixie.
+     */
+    fontWeight?: 'bold'|'normal'|100|200|300|400|500|600|700|800|900;
+}</code></pre>
+<h3 id="available-toolbar-item-actions">Available Toolbar Item Actions</h3>
+<pre class="language-typescript"><code>ToolbarItemAction = Function|'openBackgroundImage'|'openOverlayImage'|'openStateFile'|'exportImage'|'toggleHistory'|'toggleObjects'|'closeEditor';</code></pre>
+<h3 id="sample-image-configuration-uiopenimagedialogsampleimages">Sample Image Configuration (ui.openImageDialog.sampleImages)</h3>
+<pre class="language-typescript"><code>SampleImage {
+    /**
+     * Url to sample image or state file.
+     */
+    url: string;
+
+    /**
+     * Action that should be performed when user clicks on this image.
+     */
+    action?: Function;
+
+    /**
+     * Url to preview image for this sample.
+     */
+    thumbnail?: string;
+}</code></pre>
+            </div>
+        </section>
+    </div>
+    <div class="right article-content">
+        <h4>Content</h4>
+    </div>
+</div>
+</body>
+</html>
