@@ -12,9 +12,9 @@
 					<li class="nav-item">
 						<a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link" href="#home-appointments" data-toggle="tab">Home Visit</a>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<a class="nav-link" href="#pat_prescriptions" data-toggle="tab">Prescriptions</a>
 					</li>
@@ -109,7 +109,7 @@
 				<!-- /Appointment Tab -->
 				
 				<!-- Home visit Tab -->
-				<div class="tab-pane" id="home-appointments">
+				<!-- <div class="tab-pane" id="home-appointments">
 					<div class="card card-table mb-0">
 						<div class="card-body">
 							<div class="table-responsive">
@@ -144,7 +144,7 @@
 							</div>	
 						</div>	
 					</div>	
-				</div>
+				</div> -->
 				<!-- /Home visit Tab -->
 				
 				<!-- Prescription Tab -->

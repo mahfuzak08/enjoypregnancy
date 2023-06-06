@@ -51,7 +51,7 @@ class Doctor extends MX_Controller {
 		$data['total_patient'] = $this->doctor_model->getTotalPatient($data['doctor_data']->id);
 		$data['today_patient'] = $this->doctor_model->getTotalPatient($data['doctor_data']->id, true);
 		$data['appointments'] = $this->appointment_model->getAppointmentByDoctor($data['doctor_data']->id);
-		$data['home_appointment_requests'] = $this->doctor_model->getHomeAppointmentsByDoctor($data['doctor_data']->id);
+		// $data['home_appointment_requests'] = $this->doctor_model->getHomeAppointmentsByDoctor($data['doctor_data']->id);
         
 		$data['chatpage'] = false;
 		$data['page_title'] = 'Dashboard';

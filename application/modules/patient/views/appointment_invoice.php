@@ -83,8 +83,8 @@
 								<tr>
 									<td>General Consultation</td>
 									<td class="text-center">1</td>
-									<td class="text-center">$0</td>
-									<td class="text-right">$<?= $invoice[0]['amount'] > 0 ? $invoice[0]['amount'] : 0; ?></td>
+									<td class="text-center"><?= $settings->currency; ?> 0</td>
+									<td class="text-right"><?= $settings->currency; ?> <?= $invoice[0]['amount'] > 0 ? $invoice[0]['amount'] : 0; ?></td>
 								</tr>
 								<!--<tr>
 									<td>Video Call Booking</td>
@@ -102,7 +102,7 @@
 							<tbody>
 							<tr>
 								<th>Subtotal:</th>
-								<td><span>$<?= $invoice[0]['amount'] > 0 ? $invoice[0]['amount'] : 0; ?></span></td>
+								<td><span><?= $settings->currency; ?> <?= $invoice[0]['amount'] > 0 ? $invoice[0]['amount'] : 0; ?></span></td>
 							</tr>
 							<tr>
 								<th>Discount:</th>
@@ -110,7 +110,7 @@
 							</tr>
 							<tr>
 								<th>Total Amount:</th>
-								<td><span>$<?= $invoice[0]['amount'] > 0 ? $invoice[0]['amount'] : 0; ?></span></td>
+								<td><span><?= $settings->currency; ?> <?= $invoice[0]['amount'] > 0 ? $invoice[0]['amount'] : 0; ?></span></td>
 							</tr>
 							</tbody>
 						</table>
@@ -136,6 +136,7 @@
 		<div class="col-xl-5">
 			<a href="javascript:window.print();" class="btn btn-flat btn-block btn-info"><i class="fas fa-print"></i> Print</a>
 		</div>
+		<br><br>
 	</div>
 </div>
 <!-- / main page content in right side -->

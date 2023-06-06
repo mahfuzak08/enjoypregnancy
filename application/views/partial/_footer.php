@@ -483,7 +483,7 @@
 		<!-- Custom JS -->
 		<script src="new_assets/js/script.js"></script>
 		
-		<script src="new_assets/js/socket.io.js"></script>
+		<!-- <script src="new_assets/js/socket.io.js"></script> -->
 		
 		<?php
 		// for grapy
@@ -531,7 +531,7 @@
 
 		<script src="new_assets/js/ab.js"></script>
 		
-		<?php require("chat_script.php"); ?>
+		<?php // require("chat_script.php"); ?>
 		
 		<script type="text/javascript">
             function googleTranslateElementInit() {
@@ -595,14 +595,14 @@
 				return window.open(url, title, options);
 			}
 			
-			$('.mediaBtn').click(function (event) {
-				if(!confirm($(this).data('message'))){
-					return false
-				}
-				var url = $(this).data('ref');
-				popup(url, '', (screen.width*80)/100, screen.height);
-				socket.emit("send_call_notification", {participants: $("#receiver").val(), url});
-			});
+			// $('.mediaBtn').click(function (event) {
+			// 	if(!confirm($(this).data('message'))){
+			// 		return false
+			// 	}
+			// 	var url = $(this).data('ref');
+			// 	popup(url, '', (screen.width*80)/100, screen.height);
+			// 	socket.emit("send_call_notification", {participants: $("#receiver").val(), url});
+			// });
 			function stop_ring(){
 				$("#ring_div").hide().attr("data-ref", "");
 				let ir = document.getElementById("incoming_ring");
@@ -616,14 +616,14 @@
 				popup(url, '', (screen.width*80)/100, screen.height);
 				stop_ring();
 			}
-			socket.on("receive_call_notification", function(data){
-				var ids = data.participants.split(',');
-				if(ids.indexOf(user_id) == -1){
-					$("#ring_div").show().attr("data-ref", data.url);
-					let ir = document.getElementById("incoming_ring");
-					ir.play();
-				}
-			});
+			// socket.on("receive_call_notification", function(data){
+			// 	var ids = data.participants.split(',');
+			// 	if(ids.indexOf(user_id) == -1){
+			// 		$("#ring_div").show().attr("data-ref", data.url);
+			// 		let ir = document.getElementById("incoming_ring");
+			// 		ir.play();
+			// 	}
+			// });
 			
 			$('#download').click(function () {
 				var pdf = new jsPDF('p', 'pt', 'letter');

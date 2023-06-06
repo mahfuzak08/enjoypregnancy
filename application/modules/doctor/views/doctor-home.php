@@ -10,11 +10,11 @@
 			
 				<!-- Appointment Tab -->
 				<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+					<!-- <li class="nav-item">
+						<a class="nav-link" href="#calendar-tab" data-toggle="tab">Calendar</a>
+					</li>  -->
 					<li class="nav-item">
-						<a class="nav-link active" href="#calendar-tab" data-toggle="tab">Calendar</a>
-					</li> 
-					<li class="nav-item">
-						<a class="nav-link" href="#all-appointments" data-toggle="tab">All Appointment</a>
+						<a class="nav-link active" href="#all-appointments" data-toggle="tab">All Appointment</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#today-appointments" data-toggle="tab">Today</a>
@@ -27,17 +27,17 @@
 				
 				<div class="tab-content">
 					<!-- Calendar Tab -->
-					<div class="tab-pane show active" id="calendar-tab">
+					<!-- <div class="tab-pane show active" id="calendar-tab">
 						<div class="card card-table mb-0">
 							<div class="card-body">
 								<div id="calendar"></div>
 							</div>	
 						</div>	
-					</div>
+					</div> -->
 					<!-- /Calendar Tab -->
 					
 					<!-- All Appointment Appointment Tab -->
-					<div class="tab-pane" id="all-appointments">
+					<div class="tab-pane show active" id="all-appointments">
 						<div class="card card-table mb-0">
 							<div class="card-body">
 								<div class="table-responsive">
@@ -62,7 +62,7 @@
 																<a href="javascript:void(0);" data-id="<?= $row->patient_ion_user_id; ?>" class="view_patient"><?= $row->patient_name; ?> <span>#PT<?= $row->patient_ion_user_id; ?></span></a>
 															</h2>
 														</td>
-														<td><?= date('d-m-Y', $row->date); ?> <span class="d-block text-info"><?= $row->s_time; ?></span></td>
+														<td><?= $row->date; ?> <span class="d-block text-info"><?= $row->s_time; ?></span></td>
 														<td><?= $row->reason; ?></td>
 														<td class="text-center"><?= $row->amount ? '$'.$row->amount : ''; ?></td>
 														<td class="text-right">

@@ -4,7 +4,7 @@
 		<div class="card-body pt-0">
 		
 			<!-- Tab Menu -->
-			<nav class="user-tabs mb-4">
+			<!-- <nav class="user-tabs mb-4">
 				<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
 					<li class="nav-item">
 						<a class="nav-link active" href="#pat_card" data-toggle="tab">Card Paymnet</a>
@@ -13,7 +13,7 @@
 						<a class="nav-link" href="#pat_cash" data-toggle="tab">Cash Paymnet</a>
 					</li>
 				</ul>
-			</nav>
+			</nav> -->
 			<div class="tab-content pt-0">
 				<!-- card payment -->
 				<div id="pat_card" class="tab-pane fade show active">
@@ -44,7 +44,7 @@
 														<a href="<?= 'frontend/doctor_profile/'.$row->doctor; ?>"><?= $row->doctor_name; ?></a>
 													</h2>
 												</td>
-												<td>$<?= $row->amount; ?></td>
+												<td><?= $settings->currency. ' ' .$row->amount; ?></td>
 												<td><?= $row->createdat; ?></td>
 												<td class="text-right">
 													<div class="table-action">

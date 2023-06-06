@@ -36,6 +36,46 @@ class Frontend extends MX_Controller {
         $this->load->module('sms');
         date_default_timezone_set('Asia/Dhaka');
     }
+
+    /**
+     * Prepare and send HTTP requests using curl library and process response.
+     *
+     * @param $url Destination URL
+     * @param $method POST or GET
+     * @param $payload_data
+     * @param $header Header options
+     * @return mixed
+     */
+    public function getHttpResponse($url, $method, $payload_data, $header)
+    {
+        try {
+            $curl = curl_init();
+            curl_setopt_array(
+                $curl,
+                array(
+                    CURLOPT_URL => $url,
+                    CURLOPT_HTTPHEADER => $header,
+                    CURLOPT_POST => 1,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_POSTFIELDS => $payload_data,
+                    CURLOPT_CUSTOMREQUEST => $method,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    // CURLOPT_FOLLOWLOCATION => true,
+                    // CURLOPT_SSL_VERIFYPEER => $this->conf->ssl_verifypeer,
+                )
+            );
+            $response = curl_exec($curl);
+            return (json_decode($response));
+        }
+        catch (Exception $e) {
+            print_r("Please check and resolve errors to make successful request ", 0, $e);
+        } finally {
+            curl_close($curl);
+        }
+        return null;
+    }
 	
 	public function uuid_v4($trim = false) 
 	{

@@ -54,7 +54,7 @@ class Patient extends MX_Controller
 		$data['medicalHistoryLists'] = $this->patient_model->getmedicalHistorySetups();
 		$data['treatment_notes'] = $this->patient_model->getTreatment_notes($data['patient_data']->id);
 		$data['patientMedicalHistory'] = $this->patient_model->getPatientMedicalHistory($data['patient_data']->id);
-		$data['home_appointment_requests'] = $this->doctor_model->getHomeAppointmentsByPatient($data['patient_data']->id);
+		// $data['home_appointment_requests'] = $this->doctor_model->getHomeAppointmentsByPatient($data['patient_data']->id);
 		$data['pulse_rate'] = 0;
 		$data['respiratory_rate'] = 0;
 		$data['temperature'] = 0;
