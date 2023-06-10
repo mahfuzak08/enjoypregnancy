@@ -188,4 +188,8 @@ class Meeting_model extends CI_model {
         return $this->db->get('settings')->row_array();
     }
 
+    function getUserFromMd5($id){
+        $this->db->where("md5id", $id);
+        return $this->db->get("users")->row_array();
+    }
 }

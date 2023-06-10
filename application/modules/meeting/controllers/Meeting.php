@@ -23,6 +23,45 @@ class Meeting extends MX_Controller {
         }
     }
 
+    /**
+     * Prepare and send HTTP requests using curl library and process response.
+     *
+     * @param $url Destination URL
+     * @param $method POST or GET
+     * @param $payload_data
+     * @param $header Header options
+     * @return mixed
+     */
+    public function getHttpResponse($url, $method, $payload_data, $header)
+    {
+        try {
+            $curl = curl_init();
+            curl_setopt_array(
+                $curl,
+                array(
+                    CURLOPT_URL => $url,
+                    CURLOPT_HTTPHEADER => $header,
+                    CURLOPT_POST => 1,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_POSTFIELDS => $payload_data,
+                    CURLOPT_CUSTOMREQUEST => $method,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                )
+            );
+            $response = curl_exec($curl);
+            return (json_decode($response));
+        }
+        catch (Exception $e) {
+            throw new Exception("Please check and resolve errors ", 0, $e);
+        } finally {
+            curl_close($curl);
+        }
+        return null;
+    }
+
     public function index() { 
         $data['patients'] = $this->patient_model->getPatient();
         $data['doctors'] = $this->doctor_model->getDoctor();
@@ -281,16 +320,104 @@ class Meeting extends MX_Controller {
         }
     }
 
-//API Requests Starts
-    public function getMeetingsByMeetingId($meeting_id) {
-        $start_time = NULL;
+    //API Requests Starts
+    public function startinzoom() {
         $data = array();
-        $doctor_ion_id = $this->meeting_model->getMeetingByZoomMeetingId($meeting_id)->doctor_ion_id;
-        $data['doctor_ion_id'] = $doctor_ion_id;
-        $data['start_time'] = $start_time;
-        $request_url = 'https://api.zoom.us/v2/meetings/' . $meeting_id;
-        $response = $this->sendGetMeetingsRequest($data, $request_url);
-        return $response;
+        $doctor = $this->meeting_model->getUserFromMd5($_GET["d"]);
+        $patient = $this->meeting_model->getUserFromMd5($_GET["p"]);
+        $data['start_time'] = NULL;
+        $data['doctor_email'] = $doctor["email"];
+        $data['patient_email'] = $patient["email"];
+        $response = $this->start_meeting($data);
+        // $this->email->from('no-replay@enjoypregnancy.org', $settings->title);
+        // $this->email->to(array($patient["email"]));
+        // $this->email->bcc(array('mahfuzak08@gmail.com'));
+        // $this->email->subject("Your video conference is start, please join...");
+        // $this->email->message("Your appointment start. Your passcode is - ".$response["password"]."<br>Please join with this link. ". $response["join_url"]);
+		// $this->email->send();
+        $response = json_decode(json_encode($response), true);
+        redirect('doctor/callstart?url='.$response["start_url"]);
+        // redirect('zoompopup/'.$response["start_url"]);
+        // print_r($response);
+        // echo "<br>".$response["uuid"];
+        // echo "<br>".$response["id"];
+        // echo "<br>".$response["host_id"];
+        // echo "<br>".$response["host_email"];
+        // echo "<br>".$response["topic"];
+        // echo "<br>".$response["start_time"];
+        // echo "<br>".$response["created_at"];
+        // echo "<br>".$response["start_url"];
+        // echo "<br>".$response["join_url"];
+        // echo "<br>".$response["password"];
+    }
+
+    public function getZoomAuth(){
+        $endpoint = 'https://zoom.us/oauth/token';
+        $username = '960Zlq4vQNKCexvIbJq02A';
+        $password = 'svSn2YqYpWZU5J61k4Ur7hmivHLsZPtj';
+
+        $authorization = base64_encode($username . ':' . $password);
+        $data = array(
+            "grant_type" => "account_credentials",
+            "account_id" => "oBej1qpDSTCyHkREdD5B4w"
+        );
+        $ch = curl_init($endpoint);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Host: zoom.us",
+            "Authorization: Basic " . $authorization,
+            "Content-Type: application/x-www-form-urlencoded"
+        ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        if ($response === false) {
+            $error = curl_error($ch);
+            echo 'cURL error: ' . $error;
+        } 
+        else
+            return (json_decode($response));
+    }
+    
+    public function start_meeting($data){
+        $auth_response = $this->getZoomAuth();
+        $auth_response = json_decode(json_encode($auth_response), true);
+        // echo $auth_response['access_token'];
+        $registrants = array(
+            array("email"=>"mahfuz.citi@gmail.com"),
+            array("email"=>$data["patient_email"]),
+        );
+        $endpoint = 'https://api.zoom.us/v2/users/me/meetings';
+        $data = json_encode(array(
+                "topic"=> "Testing 01",
+                "type"=> "2",
+                "start_time"=> date('Y-m-d h:i:s A'),
+                "duration"=> "60",
+                "timezone"=> "Asia/Dhaka",
+                "password"=> "123",
+                "agenda"=> "Test meeting 1",
+                "settings"=> array(
+                    "host_video"=> "true",
+                    "participant_video"=> "true",
+                    "join_before_host"=> "true",
+                    "mute_upon_entry"=> "true",
+                    'host_email' => "mahfuz.citi@gmail.com",
+                    "registrants_email_notification"=> "true",
+                    "registrants"=> $registrants,
+                    "breakout_room"=> array(
+                        "enable"=> true
+                    )
+                )
+            )
+        );
+        file_put_contents("meetingdata.txt", $data);
+        $header = array(
+            'Content-Type:application/json',
+            'Authorization: Bearer ' . $auth_response['access_token']
+        );
+        
+        return $this->getHttpResponse($endpoint, 'POST', $data, $header);
     }
 
     public function createAMeeting($data = array(), $meeting_id) {

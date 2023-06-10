@@ -60,6 +60,25 @@ class Doctor extends MX_Controller {
         $this->load->view('partial/_footer', $data);
 	}
 	
+    
+    public function callstart()
+	{
+		$data = array();
+		$_SESSION['template'] = "doccure";
+		$data['localTimeZone'] = $_SESSION['localTimeZone'];
+		$data['localTimeZoneAbbr'] = $_SESSION['localTimeZoneAbbr'];
+		$data['settings'] = $this->settings_model->getSettings();
+		$doctor_ion_id = $data['user_id'] = $this->ion_auth->get_user_id();
+		$data['doctor_data'] = $this->doctor_model->getDoctorByIonUserId($doctor_ion_id);
+		$data['url'] = $_GET["url"];
+        file_put_contents("test.txt", $data['url']);
+		$data['chatpage'] = false;
+		$data['page_title'] = 'Dashboard';
+		$this->load->view('partial/_header', $data);
+        $this->load->view('callstart', $data);
+        $this->load->view('partial/_footer', $data);
+	}
+	
 	public function viewInvoice($id)
 	{
 		$data = array();

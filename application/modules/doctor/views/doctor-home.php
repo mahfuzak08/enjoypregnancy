@@ -64,13 +64,13 @@
 														</td>
 														<td><?= $row->date; ?> <span class="d-block text-info"><?= $row->s_time; ?></span></td>
 														<td><?= $row->reason; ?></td>
-														<td class="text-center"><?= $row->amount ? '$'.$row->amount : ''; ?></td>
+														<td class="text-center"><?= $settings->currency; ?> <?= $row->amount ? $row->amount : ''; ?></td>
 														<td class="text-right">
 															<div class="table-action">
 																<!--<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
 																	<i class="far fa-eye"></i> View
 																</a>-->
-																<a class="btn btn-sm bg-danger-light mediaBtn" href="javascript:void(0);" data-message="Are you sure you want to start a live video meeting with this doctor?" data-ref="<?php echo base_url('meeting/liveChatApp?roomId='.$row->patient.'-'.$row->doctor.'&amp;type=1&amp;m=2'); ?>" title="<?= lang('live'); ?>">
+																<a class="btn btn-sm bg-danger-light mediaBtn" href="<?php echo base_url('meeting/startinzoom?p='.md5($row->patient_ion_user_id).'&d='.md5($doctor_data->ion_user_id)); ?>" data-message="Are you sure you want to start a live video meeting with this doctor?" data-ref="<?php echo base_url('meeting/liveChatApp?roomId='.$row->patient.'-'.$row->doctor.'&amp;type=1&amp;m=2'); ?>" title="<?= lang('live'); ?>">
 																	<i class="fa fa-headphones"></i>
 																</a>
 																<?php $openchatid = base_convert($row->patient_ion_user_id, 10, 16)."-".base_convert($doctor_data->ion_user_id, 10, 16); ?>
@@ -126,7 +126,7 @@
 														</td>
 														<td><?= date('d-m-Y', $row->date); ?> <span class="d-block text-info"><?= $row->s_time; ?></span></td>
 														<td><?= $row->reason; ?></td>
-														<td class="text-center"><?= $row->amount ? '$'.$row->amount : ''; ?></td>
+														<td class="text-center"><?= $settings->currency; ?> <?= $row->amount ? $row->amount : ''; ?></td>
 														<td class="text-right">
 															<div class="table-action">
 																<!--<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
