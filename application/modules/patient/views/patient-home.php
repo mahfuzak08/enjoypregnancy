@@ -76,10 +76,10 @@
 											<td class="text-right">
 												<div class="table-action">
 													<?php if($row->status == 'Confirmed') {
-														$sdslot = date('d-m-Y', $row->date) . ' ' . explode(' To ',$row->time_slot)[0];
-														$edslot = date('d-m-Y', $row->date) . ' ' . explode(' To ',$row->time_slot)[1];
-														if( (strtotime($sdslot)-900) < time() && (strtotime($edslot)+900) > time() ){ ?>
-															<a class="btn btn-sm bg-danger-light mediaBtn" href="javascript:void(0);" data-message="Are you sure you want to start a live video meeting with this doctor?" data-ref="<?php echo base_url('meeting/liveChatApp?roomId='.$patient_data->id.'-'.$row->doctor.'&amp;type=1&amp;m=2'); ?>" title="<?= lang('live'); ?>">
+														// $sdslot = date('d-m-Y', $row->date) . ' ' . explode(' To ',$row->time_slot)[0];
+														// $edslot = date('d-m-Y', $row->date) . ' ' . explode(' To ',$row->time_slot)[1];
+														if($row->join_url != "" || $row->join_url != null){ ?>
+															<a class="btn btn-sm bg-danger-light mediaBtn" href="javascript:void(0);" data-message="Are you sure you want to join?" data-ref="<?= $row->join_url; ?>" title="<?= lang('live'); ?>">
 																<i class="fa fa-headphones"></i>
 															</a><?php 
 														} 

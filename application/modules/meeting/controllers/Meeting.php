@@ -325,17 +325,19 @@ class Meeting extends MX_Controller {
         $data = array();
         $doctor = $this->meeting_model->getUserFromMd5($_GET["d"]);
         $patient = $this->meeting_model->getUserFromMd5($_GET["p"]);
-        $data['start_time'] = NULL;
-        $data['doctor_email'] = $doctor["email"];
-        $data['patient_email'] = $patient["email"];
+        $settings = $this->settings_model->getSettings();
         $response = $this->start_meeting($data);
-        // $this->email->from('no-replay@enjoypregnancy.org', $settings->title);
-        // $this->email->to(array($patient["email"]));
-        // $this->email->bcc(array('mahfuzak08@gmail.com'));
-        // $this->email->subject("Your video conference is start, please join...");
-        // $this->email->message("Your appointment start. Your passcode is - ".$response["password"]."<br>Please join with this link. ". $response["join_url"]);
-		// $this->email->send();
         $response = json_decode(json_encode($response), true);
+        // send a mail to the prticipants
+        $this->email->from('no-replay@enjoypregnancy.org', $settings->title);
+        $this->email->to(array($patient["email"]));
+        $this->email->bcc(array('mahfuzak08@gmail.com'));
+        $this->email->subject("Your video conference is start, please join...");
+        $this->email->message("Your appointment start with the passcode is - ".$response['password']."<br>Please join with this link. <br>".$response['join_url']."<br><br><br><b>Note:</b>This link will expire after one hour.");
+        $this->email->send();
+        // enable the join icon in 
+        $response['appointment_id'] = $_GET["a"];
+        $this->meeting_model->updateAppointment($response);
         redirect('doctor/callstart?url='.$response["start_url"]);
         // redirect('zoompopup/'.$response["start_url"]);
         // print_r($response);

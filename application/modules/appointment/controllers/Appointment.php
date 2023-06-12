@@ -278,8 +278,10 @@ class Appointment extends MX_Controller {
             $patient_phone = $this->patient_model->getPatientById($patient)->phone;
             
             if (empty($id)) {
-                $room_id = 'hms-meeting-' . $patient_phone . '-' . rand(10000, 1000000) . '-' . $this->hospital_id;
-                $live_meeting_link = 'https://meet.jit.si/' . $room_id;
+                $room_id = '';
+                $live_meeting_link = '';
+                // $room_id = 'hms-meeting-' . $patient_phone . '-' . rand(10000, 1000000) . '-' . $this->hospital_id;
+                // $live_meeting_link = 'https://meet.jit.si/' . $room_id;
             } else {
                 $appointment_details = $this->appointment_model->getAppointmentById($id);
                 $room_id = $appointment_details->room_id;
@@ -421,8 +423,10 @@ class Appointment extends MX_Controller {
         $patient_phone = $this->patient_model->getPatientById($patient)->phone;
         
         if (empty($id)) {
-            $room_id = 'hms-meeting-' . $patient_phone . '-' . rand(10000, 1000000) . '-' . $this->hospital_id;
-            $live_meeting_link = 'https://meet.jit.si/' . $room_id;
+            $room_id = '';
+            $live_meeting_link = '';
+            // $room_id = 'hms-meeting-' . $patient_phone . '-' . rand(10000, 1000000) . '-' . $this->hospital_id;
+            // $live_meeting_link = 'https://meet.jit.si/' . $room_id;
         } else {
             $appointment_details = $this->appointment_model->getAppointmentById($id);
             $room_id = $appointment_details->room_id;

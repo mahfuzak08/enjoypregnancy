@@ -379,8 +379,10 @@ class Frontend_model extends CI_model {
         $e_time = trim($time_slot_explode[1]);
 		$s_time_key = $this->getArrayKey($s_time);
 		
-		$room_id = 'hms-meeting-' . $data['phone'] . '-' . rand(10000, 1000000) . '-' . $data['hospital_id'];
-		$live_meeting_link = 'https://meet.jit.si/' . $room_id;
+		$room_id = '';
+		$live_meeting_link = '';
+		// $room_id = 'hms-meeting-' . $data['phone'] . '-' . rand(10000, 1000000) . '-' . $data['hospital_id'];
+		// $live_meeting_link = 'https://meet.jit.si/' . $room_id;
 		
 		$adata = array(
 			'patient' => $data['pateint_id'],

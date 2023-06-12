@@ -595,14 +595,16 @@
 				return window.open(url, title, options);
 			}
 			
-			// $('.mediaBtn').click(function (event) {
-			// 	if(!confirm($(this).data('message'))){
-			// 		return false
-			// 	}
-			// 	var url = $(this).data('ref');
-			// 	popup(url, '', (screen.width*80)/100, screen.height);
-			// 	socket.emit("send_call_notification", {participants: $("#receiver").val(), url});
-			// });
+			$('.mediaBtn').click(function (event) {
+				if(!confirm($(this).data('message'))){
+					return false
+				}
+				var url = $(this).data('ref');
+				if(url){
+				    popup(url, '', (screen.width*80)/100, screen.height);
+				    socket.emit("send_call_notification", {participants: $("#receiver").val(), url});
+				}
+			});
 			function stop_ring(){
 				$("#ring_div").hide().attr("data-ref", "");
 				let ir = document.getElementById("incoming_ring");
