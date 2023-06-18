@@ -397,7 +397,7 @@ class Frontend_model extends CI_model {
 			'remarks' => $data['reason'],
 			//'add_date' => $add_date,
 			'registration_time' => time(),
-			'status' => @$data['payment']['data']['trans_id'] > 0 ? 'Confirmed' : 'Requested',
+			'status' => 'Initiated',
 			's_time_key' => $s_time_key,
 			// 'user' => $user,
 			// 'request' => $request,
@@ -477,6 +477,7 @@ class Frontend_model extends CI_model {
             "trans_id"=> $ttid,
             "transaction_id"=> $data->order_id,
             "card_tab_id"=> $ctid,
+            "status"=> "Requested"
             )
         )){
             file_put_contents('log/appointment_update_at_'.date('Y_m_d_H_i_s').'.txt', $this->db->error());

@@ -75,27 +75,32 @@
 											<td><span class="badge badge-pill bg-<?= $badge_color; ?>-light"><?= $row->status; ?></span></td>
 											<td class="text-right">
 												<div class="table-action">
-													<?php if($row->status == 'Confirmed') {
-														// $sdslot = date('d-m-Y', $row->date) . ' ' . explode(' To ',$row->time_slot)[0];
-														// $edslot = date('d-m-Y', $row->date) . ' ' . explode(' To ',$row->time_slot)[1];
-														if($row->join_url != "" || $row->join_url != null){ ?>
-															<a class="btn btn-sm bg-danger-light mediaBtn" href="javascript:void(0);" data-message="Are you sure you want to join?" data-ref="<?= $row->join_url; ?>" title="<?= lang('live'); ?>">
-																<i class="fa fa-headphones"></i>
-															</a><?php 
-														} 
-													} ?>
-													<?php $openchatid = base_convert($patient_data->ion_user_id, 10, 16)."-".base_convert($row->doctor_ion_user_id, 10, 16); ?>
-													<a href="chat/open/<?= $openchatid; ?>" class="btn btn-sm bg-info-light" title="Chat">
-														<i class="fas fa-comments"></i>
-													</a>
-													<a href="<?= base_url("patient/viewInvoice/".$row->id); ?>" class="btn btn-sm bg-info-light" title="View">
-														<i class="far fa-eye"></i>
-													</a>
-													<?php if($row->review == 0){ ?>
-														<a href="<?= base_url("frontend/doctor_profile/".@$row->doctor."?review=".$row->id); ?>" class="btn btn-sm bg-info-light" title="Go to Review Page"><i class="fa fa-star"></i> </a> 
-													<?php } else { ?>
-														<a class="btn btn-sm bg-warning-light" title="You give <?= $row->review; ?> star"><i class="fa fa-star"></i></a> 
-													<?php } ?>
+													<?php if($row->status == 'Initiated') { ?>
+														<a href="frontend/bookingsuccessfull_payment_notdone/<?= $row->id; ?>" class="btn btn-sm bg-info" title="Chat">
+															<i class="fas fa-money-check-alt"></i> Pay Now
+														</a>
+													<?php } else {
+														if($row->status == 'Confirmed') {
+															$sdate = explode('T',$row->s_time)[0];
+															if($sdate == date("Y-m-d") && ($row->join_url != "" || $row->join_url != null)){ ?>
+																<a class="btn btn-sm bg-danger-light mediaBtn" href="javascript:void(0);" data-message="Are you sure you want to join?" data-ref="<?= $row->join_url; ?>" title="<?= lang('live'); ?>">
+																	<i class="fa fa-headphones"></i>
+																</a><?php 
+															} 
+														} ?>
+														<?php $openchatid = base_convert($patient_data->ion_user_id, 10, 16)."-".base_convert($row->doctor_ion_user_id, 10, 16); ?>
+														<a href="chat/open/<?= $openchatid; ?>" class="btn btn-sm bg-info-light" title="Chat">
+															<i class="fas fa-comments"></i>
+														</a>
+														<a href="<?= base_url("patient/viewInvoice/".$row->id); ?>" class="btn btn-sm bg-info-light" title="View">
+															<i class="far fa-eye"></i>
+														</a>
+														<?php if($row->review == 0){ ?>
+															<a href="<?= base_url("frontend/doctor_profile/".@$row->doctor."?review=".$row->id); ?>" class="btn btn-sm bg-info-light" title="Go to Review Page"><i class="fa fa-star"></i> </a> 
+														<?php } else { ?>
+															<a class="btn btn-sm bg-warning-light" title="You give <?= $row->review; ?> star"><i class="fa fa-star"></i></a> 
+														<?php }
+													}?>
 												</div>
 											</td>
 										</tr>
