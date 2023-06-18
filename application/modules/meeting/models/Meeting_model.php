@@ -196,7 +196,7 @@ class Meeting_model extends CI_model {
     function updateAppointment($arg){
         $this->db->where("id", $arg["appointment_id"]);
         if(! $this->db->update("appointment", array("status"=>"Confirmed", "s_time"=>$arg["start_time"], "room_id"=>$arg["id"], "live_meeting_link"=>$arg["start_url"], "join_url"=>$arg["join_url"], "passcode"=>$arg["password"]))){
-            file_put_contents('meeting_log_at_'.date('Y_m_d_H_i_s').'.txt', $this->db->error());
+            file_put_contents('log/meeting_log_at_'.date('Y_m_d_H_i_s').'.txt', $this->db->error());
         }
         return true;
     }

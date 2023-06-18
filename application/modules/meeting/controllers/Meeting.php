@@ -17,7 +17,7 @@ class Meeting extends MX_Controller {
         $this->load->module('sms');
 
         $this->load->model('profile/profile_model');
-
+        $this->load->library('mobilemsg');
         if (!$this->ion_auth->in_group(array('admin', 'Doctor', 'Patient'))) {
             redirect('home/permission');
         }
@@ -328,6 +328,7 @@ class Meeting extends MX_Controller {
         $settings = $this->settings_model->getSettings();
         $response = $this->start_meeting($data);
         $response = json_decode(json_encode($response), true);
+        
         // send a mail to the prticipants
         $this->email->from('no-replay@enjoypregnancy.org', $settings->title);
         $this->email->to(array($patient["email"]));
@@ -335,9 +336,14 @@ class Meeting extends MX_Controller {
         $this->email->subject("Your video conference is start, please join...");
         $this->email->message("Your appointment start with the passcode is - ".$response['password']."<br>Please join with this link. <br>".$response['join_url']."<br><br><br><b>Note:</b>This link will expire after one hour.");
         $this->email->send();
+        
+        // send sms to the participants
+        $this->mobilemsg->send($patient["phone"], "Appointment start. PCode-".$response['password']." Join link ".$response['join_url']);
+        
         // enable the join icon in 
         $response['appointment_id'] = $_GET["a"];
         $this->meeting_model->updateAppointment($response);
+        
         redirect('doctor/callstart?url='.$response["start_url"]);
         // redirect('zoompopup/'.$response["start_url"]);
         // print_r($response);
